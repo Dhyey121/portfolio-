@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aaryan Chavda — AI, Strategy & Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9eaec;--surf:#f6f6f7;--ink:#14181f;--mut:#566070;--line:#c9ccd2;--acc:#2a5bd7;--accfg:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--surf:#181e28;--ink:#eceef2;--mut:#98a2b3;--line:#2b3340;--acc:#6f95ff;--accfg:#0b0f16}}
+:root[data-theme="dark"]{--bg:#10141b;--surf:#181e28;--ink:#eceef2;--mut:#98a2b3;--line:#2b3340;--acc:#6f95ff;--accfg:#0b0f16}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.w{max-width:960px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+nav .w{display:flex;align-items:center;gap:16px;height:52px;overflow-x:auto}
+nav a{text-decoration:none;color:var(--mut);white-space:nowrap;font-size:15px}
+nav a:hover{color:var(--ink)}
+#theme{margin-left:auto;border:1px solid var(--line);background:var(--surf);border-radius:20px;padding:4px 12px;font-size:14px}
+header{padding:56px 0 48px}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--surf);padding:3px 12px;border-radius:20px;font-size:14px;color:var(--mut)}
+h1{font-size:clamp(52px,14vw,120px);font-weight:800;letter-spacing:-.03em;margin:18px 0 16px}
+.roles{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:500;min-height:2.4em;max-width:18em}
+.roles b{background:var(--acc);color:var(--accfg);padding:0 8px;border-radius:4px;font-weight:700}
+.meta{color:var(--mut);margin-top:12px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px}
+.stats div{border-left:3px solid var(--acc);padding-left:12px}
+.stats strong{display:block;font:800 28px "Bricolage Grotesque",sans-serif}
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(30px,6vw,44px);font-weight:700;margin-bottom:24px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button,.chip{border:1px solid var(--line);background:var(--surf);padding:6px 14px;border-radius:20px}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:17px;transition:opacity .25s,transform .25s}
+.chip.off{opacity:.2;transform:scale(.96)}
+#skillnote{color:var(--mut);margin-top:16px;min-height:1.6em}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.tl li{margin:0 0 14px 20px;position:relative}
+.tl li:before{content:"";position:absolute;left:-27px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--acc);border:3px solid var(--bg)}
+.tl button{width:100%;text-align:left;background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.tl h3{font-size:22px}
+.tl small{color:var(--mut);display:block}
+.tl .more{display:none;margin-top:10px;color:var(--mut)}
+.tl [aria-expanded=true] .more{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{min-height:150px;perspective:700px;background:none;border:0;padding:0;text-align:left}
+.card span{display:block;height:100%;min-height:150px;padding:16px;border:1px solid var(--line);border-radius:8px;background:var(--surf)}
+.card h3{font-size:20px;margin-bottom:6px}
+.card .back{display:none;background:var(--ink);color:var(--bg);font-size:14.5px}
+.card[aria-pressed=true] .front{display:none}
+.card[aria-pressed=true] .back{display:block}
+.hint{color:var(--mut);font-size:14px;margin:-12px 0 16px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.box{border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:16px}
+.box h3{font-size:20px}.box p{margin:4px 0 0;color:var(--mut)}
+footer{padding:40px 0 56px;border-top:1px solid var(--line);color:var(--mut)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:9}
+nav a.on{color:var(--ink);font-weight:500;border-bottom:2px solid var(--acc)}
+.chip.sel{background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+.stage{background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:18px;min-height:130px}
+.stage h3{font-size:26px}.stage p{margin:6px 0 0;color:var(--mut)}
+#yr{width:100%;accent-color:var(--acc);margin:6px 0 10px}
+.ticks{display:flex;justify-content:space-between;color:var(--mut);font-size:13px;margin-bottom:14px}
+.q{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.q button{border:1px solid var(--acc);background:none;color:var(--acc);padding:6px 14px;border-radius:20px}
+.chat{display:flex;flex-direction:column;gap:10px;min-height:120px}
+.chat div{max-width:88%;padding:10px 14px;border-radius:14px}
+.chat .u{align-self:flex-end;background:var(--ink);color:var(--bg)}
+.chat .a{align-self:flex-start;background:var(--surf);border:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><div class="w">
+<a href="#about">About</a><a href="#skills">Skills</a><a href="#exp">Experience</a><a href="#journey">Journey</a><a href="#agents">AI notes</a><a href="#edu">Education</a><a href="#ask">Ask</a>
+<button id="theme" aria-label="Toggle light and dark theme">Dark</button>
+</div></nav>
+
+<header><div class="w">
+<span class="pill">Ahmedabad, Gujarat, India</span>
+<h1>Aaryan Chavda</h1>
+<div class="roles" aria-live="polite">B.Tech student working in <b id="role">Artificial Intelligence</b></div>
+<p class="meta">Strategy, execution, results.</p>
+<div class="stats">
+<div><strong>1 yr 9 mos</strong>at CESA</div>
+<div><strong data-n="10">10</strong>skills listed</div>
+<div><strong data-n="2028">2028</strong>B.Tech graduation</div>
+</div>
+</div></header>
+
+<section id="about"><div class="w">
+<h2>About</h2>
+<p style="max-width:62ch;font-size:19px">I am a B.Tech student focused on the intersection of technology, business, and strategy, and on applying these disciplines to solve real-world problems.</p>
+<p style="max-width:62ch;color:var(--mut)">I am actively building hands-on experience through projects, internships, and independent work.</p>
+</div></section>
+
+<section id="skills"><div class="w">
+<h2>Skills</h2>
+<div class="tabs" id="tabs">
+<button aria-pressed="true" data-f="all">All</button>
+<button aria-pressed="false" data-f="ai">AI &amp; automation</button>
+<button aria-pressed="false" data-f="biz">Business</button>
+<button aria-pressed="false" data-f="cre">Data &amp; design</button>
+</div>
+<div class="chips" id="chips"></div>
+<p id="skillnote">Tap a skill to see where it was used.</p>
+</div></section>
+
+<section id="exp"><div class="w">
+<h2>Experience</h2>
+<ul class="tl">
+<li><button aria-expanded="false"><h3>Coordinator</h3><small>CESA (Computer Engineering Students Association) · Feb 2026 – Present</small><span class="more">Current full-time role at CESA, following a year as a volunteer there.</span></button></li>
+<li><button aria-expanded="false"><h3>Coordinator</h3><small>NSS UPES · Oct 2025 – Apr 2026 · Ahmedabad</small><span class="more">Seven months coordinating for the National Service Scheme unit.</span></button></li>
+<li><button aria-expanded="false"><h3>Volunteer</h3><small>CESA · Feb 2025 – Apr 2026</small><span class="more">1 yr 3 mos. Skills used: Social Media Marketing, Management, Data Visualization.</span></button></li>
+</ul>
+</div></section>
+
+<section id="journey"><div class="w">
+<h2>Journey</h2>
+<p class="hint">Drag the slider through the milestones from my profile.</p>
+<input id="yr" type="range" min="0" max="5" value="0" aria-label="Journey milestone">
+<div class="ticks"><span>2024</span><span>2025</span><span>2026</span><span>2028</span></div>
+<div class="stage" aria-live="polite"><small id="yd"></small><h3 id="yt"></h3><p id="yp"></p></div>
+</div></section>
+
+<section id="agents"><div class="w">
+<h2>What I'm following in AI agents</h2>
+<p class="hint">Tap a card to flip it. From a post I reposted: "AI Agents, 6 must know terms."</p>
+<div class="cards" id="cards"></div>
+</div></section>
+
+<section id="edu"><div class="w">
+<h2>Education &amp; certification</h2>
+<div class="two">
+<div class="box"><h3>Indus University Ahmedabad</h3><p>B.Tech, 2024 – 2028</p></div>
+<div class="box"><h3>White House Public School</h3><p>India</p></div>
+<div class="box"><h3>AI for Product Management</h3><p>Pendo.io · Issued May 2026</p></div>
+</div>
+</div></section>
+
+<section id="ask"><div class="w">
+<h2>Ask about me</h2>
+<div class="q" id="q"></div>
+<div class="chat" id="chat" aria-live="polite"><div class="a">Pick a question. Answers come only from my LinkedIn profile.</div></div>
+</div></section>
+
+<footer><div class="w">Aaryan Chavda · Find me on LinkedIn.</div></footer>
+
+<script>
+const skills=[
+["Agentic Automation","ai",""],["Claude Code Subagents","ai",""],["Artificial Intelligence (AI)","ai",""],["n8n","ai",""],
+["Business Strategy","biz",""],["Management","biz","Used as a volunteer at CESA."],
+["Data Analysis","cre",""],["Data Visualization","cre","Used as a volunteer at CESA."],
+["Social Media Marketing","biz","Used as a volunteer at CESA."],["Graphic Design","cre",""]];
+const chips=document.getElementById('chips'),note=document.getElementById('skillnote');
+skills.forEach(([n,c,u])=>{const b=document.createElement('button');b.className='chip';b.textContent=n;b.dataset.c=c;
+b.onclick=()=>{chips.querySelectorAll(".chip").forEach(x=>x.classList.remove("sel"));b.classList.add("sel");note.textContent=u?n+": "+u:n+": listed on my profile.";};chips.appendChild(b)});
+document.getElementById('tabs').onclick=e=>{const f=e.target.dataset.f;if(!f)return;
+document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-pressed',b===e.target));
+chips.querySelectorAll('.chip').forEach(c=>c.classList.toggle('off',f!=='all'&&c.dataset.c!==f))};
+document.querySelectorAll('.tl button').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true'));
+const terms=[
+["Model Context Protocol (MCP)","A universal standard from Anthropic for connecting AI applications to external data sources and tools."],
+["Single-agent architecture","One agent handles the whole pipeline and decides when to search, summarize or generate."],
+["Skills","The specific capabilities or tools an agent can use, such as querying databases or calling APIs."],
+["Multi-agent architecture","Several specialized agents work together on a larger goal, enabling parallel processing."],
+["Agentic RAG","Agents orchestrate retrieval, route queries, validate results and decide whether to retrieve again."],
+["Memory","Stores context and past interactions: short-term in the context window, long-term retrieved on demand."]];
+const cards=document.getElementById('cards');
+terms.forEach(([t,d])=>{const b=document.createElement('button');b.className='card';b.setAttribute('aria-pressed','false');
+b.innerHTML='<span class="front"><h3>'+t+'</h3>Tap to read</span><span class="back">'+d+'</span>';
+b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');cards.appendChild(b)});
+const roles=["Artificial Intelligence","LLMs","AGI","Automations","Business Strategy","Product Management","Product Strategy"];
+let i=0;const r=document.getElementById('role');
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{i=(i+1)%roles.length;r.textContent=roles[i]},2200);
+const root=document.documentElement,tb=document.getElementById('theme');
+const dark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+const lab=()=>tb.textContent=dark()?'Light':'Dark';lab();
+tb.onclick=()=>{root.dataset.theme=dark()?'light':'dark';lab()};
+
+const bar=document.getElementById('bar');
+const links=[...document.querySelectorAll('nav a')],secs=links.map(a=>document.querySelector(a.hash));
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(scrollY/(h.scrollHeight-innerHeight||1)*100)+'%';
+let k=0;secs.forEach((e,j)=>{if(e.getBoundingClientRect().top<innerHeight*.4)k=j});links.forEach((a,j)=>a.classList.toggle('on',j===k))},{passive:true});
+document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n;if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+const t0=performance.now();(function f(t){const p=Math.min((t-t0)/1200,1);e.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)});
+const ms=[["2024","Started B.Tech","Began my B.Tech at Indus University Ahmedabad (2024 – 2028)."],
+["Feb 2025","Joined CESA as a volunteer","Computer Engineering Students Association. Worked on social media marketing, management and data visualization."],
+["Oct 2025","NSS coordinator","Started as Coordinator at NSS UPES."],
+["Feb 2026","Became CESA Coordinator","Moved from volunteer to the Coordinator role at CESA, which I hold now."],
+["Apr–May 2026","Wrapped up and certified","NSS coordinator and CESA volunteer roles ended in Apr 2026. Earned AI for Product Management from Pendo.io in May 2026."],
+["2028","Graduation","Expected end of my B.Tech."]];
+const yr=document.getElementById('yr'),yd=document.getElementById('yd'),yt=document.getElementById('yt'),yp=document.getElementById('yp');
+const show=()=>{const m=ms[yr.value];yd.textContent=m[0];yt.textContent=m[1];yp.textContent=m[2]};yr.oninput=show;show();
+const qa=[["What do you do?","I'm a B.Tech student at Indus University Ahmedabad, focused on technology, business and strategy. I'm currently Coordinator at CESA."],
+["Which tools?","Agentic automation, Claude Code subagents and n8n, plus data analysis, data visualization and graphic design."],
+["Leadership?","CESA Coordinator since Feb 2026 after volunteering from Feb 2025, and NSS UPES Coordinator from Oct 2025 to Apr 2026."],
+["Certifications?","AI for Product Management from Pendo.io, issued May 2026."],
+["Where are you based?","Ahmedabad, Gujarat, India."]];
+const q=document.getElementById('q'),chat=document.getElementById('chat');
+qa.forEach(([a,b])=>{const x=document.createElement('button');x.textContent=a;x.onclick=()=>{
+for(const [c,t] of [['u',a],['a',b]]){const d=document.createElement('div');d.className=c;d.textContent=t;chat.appendChild(d)}
+chat.lastChild.scrollIntoView({block:'nearest',behavior:'smooth'})};q.appendChild(x)});
+</script>
+</body>
+</html>
